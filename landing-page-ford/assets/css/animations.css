@@ -1,0 +1,19 @@
+* { transition: ease-in-out .3s; }
+
+header a:hover {
+    color: #fff;
+    text-shadow: 1px 0 var(--primary-color), -1px 0 var(--primary-color), 0 1px var(--primary-color), 0 -1px var(--primary-color), 1px 1px var(--primary-color), -1px -1px var(--primary-color), 1px -1px var(--primary-color), -1px 1px var(--primary-color);
+}
+
+.info:hover { background-color: var(--primary-color); }
+
+main.index { .lauch { .info:hover { h3, p { color: #fff; } } } }
+
+.info.left:hover { transform: translateX(-20px); }
+.info.right:hover { transform: translateX(20px); }
+
+table tr td img:hover { transform:scale(1.05); }
+
+button:hover { transform: translateY(-3px); }
+
+footer { > div { img:hover { transform: translateY(-5px); } } }
