@@ -114,7 +114,12 @@
     table tr td img { margin-bottom: 30px; }
 
     main.contato {
-        h1 { font-size: 1.75rem; }
+        h1 {
+            font-size: 1.75rem;
+            margin-bottom: 45px;
+        }
+
+        img { margin-bottom: 45px; }
 
         form {
             .form-container {
@@ -216,8 +221,15 @@
     table tr td img { margin-bottom: 40px; }
     
     main.contato {
-        h1 { font-size: 2.5rem; }
-        img { width: 600px; }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        img {
+            width: 600px;
+            margin-bottom: 60px;
+        }
 
         form {
             .form-container {
