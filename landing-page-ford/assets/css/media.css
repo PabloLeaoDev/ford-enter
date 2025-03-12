@@ -28,6 +28,12 @@
     header {
         flex-direction: row;
         padding: 15px;
+
+        img {
+            position: absolute;
+    transform: translate(10%, -50%);
+        }
+
         nav {
             display: flex;
             width: 100%;
