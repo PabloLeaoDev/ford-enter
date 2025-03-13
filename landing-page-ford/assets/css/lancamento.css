@@ -52,7 +52,7 @@ table {
                     p {
                         font-weight: 700;
                         font-size: small;
-                        color: var(--primary-color);
+                        color: var(--secundary-color);
                         width: 100%;
                     }
                     .price {

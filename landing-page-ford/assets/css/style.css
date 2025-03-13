@@ -4,7 +4,8 @@
     --img-escale: 12;
     --logo-width: calc(1024px / var(--img-escale));
     --logo-height: calc(384px / var(--img-escale));
-    --primary-color: #003399;
+    --primary-color: #1b357e;
+    --secundary-color: #1351d8;
 }
 
 * {
@@ -52,7 +53,7 @@ header {
         }
 
         a {
-            color: var(--primary-color);
+            color: var(--secundary-color);
             text-decoration: none;
             font-weight: bold;
         }
@@ -138,7 +139,7 @@ main {
                 border-radius: 10px;
     
                 h3 {
-                    color: var(--primary-color);
+                    color: var(--secundary-color);
                     font-size: 1rem;
                     font-weight: 700;
                 }
@@ -182,7 +183,7 @@ main {
         margin: 30px 0;
         padding: 15px;
         border: none;
-        background: var(--primary-color);
+        background: var(--secundary-color);
         color: white;
         border-radius: 10px;
         font-weight: 700;
