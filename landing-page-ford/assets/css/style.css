@@ -29,7 +29,7 @@ header {
     align-items: center;
     background: white;
     padding: 10px 0;
-    height: 75px;
+    height: 85px;
     box-shadow: 0px -3px 6px 3px rgba(0, 0, 0, 0.7);
 
     img {
@@ -44,7 +44,7 @@ header {
             justify-content: space-between;
             list-style: none;
             padding: 0;
-            font-size: small;
+            font-size: medium;
 
             li {
                 display: inline;

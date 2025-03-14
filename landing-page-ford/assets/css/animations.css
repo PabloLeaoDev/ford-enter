@@ -1,9 +1,6 @@
 * { transition: ease-in-out .3s; }
 
-header a:hover {
-    color: #fff;
-    text-shadow: 1px 0 var(--primary-color), -1px 0 var(--primary-color), 0 1px var(--primary-color), 0 -1px var(--primary-color), 1px 1px var(--primary-color), -1px -1px var(--primary-color), 1px -1px var(--primary-color), -1px 1px var(--primary-color);
-}
+header a:hover { color: var(--primary-color); }
 
 .info:hover { background-color: var(--primary-color); }
 
