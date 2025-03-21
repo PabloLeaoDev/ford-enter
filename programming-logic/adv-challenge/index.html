@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<link rel="stylesheet" href="assets/css/style.css" media="all">-->
+    <!--<link rel="stylesheet" href="./assets/css/media-query.css">-->
+</head>
+<body>
+    <main>
+        <section class="container">
+            <div class="image">
+                
+            </div>
+            <div class="form">
+                <h1>Gastos Veículares</h1>
+                <form autocomplete="on">
+                    <div class="field">
+                        <label for="ikm-distance">Qual a distância percorrida da sua casa até o trabalho (em km)?</label>
+                        <input type="number" name="km-distance" id="ikm-distance" placeholder="digite aqui" required>
+                    </div>
+                    <div class="field">
+                        <label for="ivehicle-consumption">Qual o consumo médio do veículo (em Km/L)?</label>
+                        <input type="number" name="vehicle-consumption" id="ivehicle-consumption" placeholder="digite aqui" required>
+                    </div>
+                    <div class="field">
+                        <label for="istations-quantity">Em quantos postos você pesquisou?</label>
+                        <input type="number" name="stations-quantity" id="istations-quantity" placeholder="digite aqui" required>
+                    </div>
+                    <div class="field dinamic">
+                        <label for="istation-prices">Digite o valor encontrado (em R$) no posto <span id="num-station"></span>:</label>
+                        <input type="number" name="station-prices" id="istation-prices" placeholder="digite aqui" required>
+                    </div>
+                    <input type="submit" value="Obtenha os dados" id="btn">
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

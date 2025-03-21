@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ford Company</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/lancamento.css">
+    <link rel="stylesheet" href="assets/css/media.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="assets/img/logo-ford.png" alt="Logo da Ford"></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lancamento.html">Lançamento</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="lancamento">
+        <h1 class="l-h1">Confira as Inovações do Novo Modelo Ford</h1>
+        <video autoplay loop muted>
+            <source src="assets/video/ford-video.mp4" type="video/mp4">
+            <!-- colocar .ogg -->
+            Seu navegador não suporta vídeos.
+        </video>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="car-img"><label for="xl"><img class="check" src="assets/img/XL Cabine.jpg" alt=""></label></td>
+                    <td class="car-info">
+                        <input class="check" type="checkbox" id="xl">
+                        <div>
+                            <p>Ranger XL Cabine Diesel 4x4 2022</p>
+                            <p class="price">Preço: R$ 180.000</p>
+                        </div>
+                        <img class="info-img" src="assets/img/info.png" alt="info">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="car-img"><label for="xls"><img class="check" src="assets/img/xls 2.2 diesel.jpg" alt=""></label></td>
+                    <td class="car-info">
+                        <input class="check" type="checkbox" id="xls">
+                        <div>
+                            <p>Ranger XLS 2.2 Diesel 4x4 2022</p>
+                            <p class="price">Preço: R$ 240.000</p>
+                        </div>
+                        <img class="info-img" src="assets/img/info.png" alt="info">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="car-img"><label for="storm"><img class="check" src="assets/img/storm.jpg" alt=""></label></td>
+                    <td class="car-info">
+                        <input class="check" type="checkbox" id="storm">
+                        <div>
+                            <p>Ranger Storm Diesel 4x4 2022</p>
+                            <p class="price">Preço: R$ 300.000</p>
+                        </div>
+                        <img class="info-img" src="assets/img/info.png" alt="info">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button>Comparar Carros</button>
+    </main>
+    <footer>
+        <div>
+            <p>Redes Sociais</p>
+            <div>
+                <a href="https://pt-br.facebook.com/ford/photos/" target="_blank"><img src="assets/img/facebook-50.png" alt="Facebook"></a>
+                <a href="https://www.youtube.com/user/ford" target="_blank"><img src="assets/img/youtube-squared-50.png" alt="Youtube"></a>
+                <a href="https://www.instagram.com/fordbrasil/" target="_blank"><img src="assets/img/instagram-logo-50.png" alt="Instagram"></a>
+            </div>
+        </div>
+        <a href="https://www.ford.com.br/copyright/" target="_blank"><img src="assets/img/ford-96.png" alt="Logo da Ford"></a>
+    </footer>
+    <script src="assets/js/compare.js"></script>
+</body>
+</html>
