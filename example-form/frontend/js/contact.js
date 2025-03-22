@@ -55,31 +55,29 @@ function alphabetValidator(text) {
     ),
     combAlpha = alphabet.concat(accentedLetters),
     getChars = text
-      .split("")
+      .split('')
       .map((char) => char.toUpperCase())
-      .map((char) => (!combAlpha.includes(char) ? "" : char));
+      .map((char) => (!combAlpha.includes(char) ? '' : char));
 
-  return !getChars.includes("");
+  return !getChars.includes('');
 }
 
 function nameValidator(name) {
   if (!alphabetValidator(name)) return false;
 
-  const arrName = name.split(" ");
+  const arrName = name.split(' ');
 
-  return arrName.length > 2;
+  return arrName.length <= 2;
 }
 
 function cpfValidator(cpf) {
-  const cleanCpf = cpf.trim().replace(/\D/g, "");
-
-  console.log(cleanCpf);
+  const cleanCpf = cpf.trim().replace(/\D/g, '');
 
   if (cleanCpf.length !== 11 || /^(\d)\1{10}$/.test(cleanCpf)) return false;
 
   const calculateDigit = (partialCpf, initialWeight) => {
     const sum = partialCpf
-      .split("")
+      .split('')
       .reduce(
         (acc, digit, index) => acc + Number(digit) * (initialWeight - index),
         0
@@ -96,26 +94,18 @@ function cpfValidator(cpf) {
 }
 
 function phoneNumberValidator(phoneNumber) {
-  const cleanPhoneNumber = phoneNumber.replace(/[^\d]/g, "");
+  const cleanPhoneNumber = phoneNumber.replace(/[^\d]/g, '');
 
   if (isNaN(Number(cleanPhoneNumber))) return;
 
-  return cleanPhoneNumber.split("").length === 11;
+  return cleanPhoneNumber.split('').length === 11;
 }
 
 function formValidator(formFields) {
-  console.log(formFields);
-
   const isNameFieldValid = nameValidator(formFields.name),
     isMiddlenameFieldValid = alphabetValidator(formFields.middlename),
     isCpfFieldValid = cpfValidator(formFields.cpf),
     isPhoneNumberFieldValid = phoneNumberValidator(formFields.phoneNumber);
-  console.log({
-    name: isNameFieldValid,
-    middle: isMiddlenameFieldValid,
-    cpf: isCpfFieldValid,
-    phone: isPhoneNumberFieldValid,
-  });
 
   const areFieldsValid =
     isNameFieldValid &&
@@ -124,28 +114,28 @@ function formValidator(formFields) {
     isPhoneNumberFieldValid;
 
   return [areFieldsValid, {
-    isNameFieldValid,
-    isMiddlenameFieldValid,
-    isCpfFieldValid,
-    isPhoneNumberFieldValid
+    nome: isNameFieldValid,
+    sobrenome: isMiddlenameFieldValid,
+    cpf: isCpfFieldValid,
+    telefone: isPhoneNumberFieldValid
   }];
 }
 
 async function post(form) {
   const data = new Contact(
-    form.elements.namedItem("name").value.trim(),
-    form.elements.namedItem("middlename").value.trim(),
-    form.elements.namedItem("email").value.trim(),
-    form.elements.namedItem("cpf").value,
-    form.elements.namedItem("phone-number").value,
-    form.elements.namedItem("contact").value
+    form.elements.namedItem('name').value.trim(),
+    form.elements.namedItem('middlename').value.trim(),
+    form.elements.namedItem('email').value.trim(),
+    form.elements.namedItem('cpf').value,
+    form.elements.namedItem('phone-number').value,
+    form.elements.namedItem('contact').value
   );
 
   const isFormValid = formValidator(data.elements);
 
   if (!isFormValid[0]) {
     for (let field in isFormValid[1]) {
-      if (isFormValid[1][field]) {
+      if (!isFormValid[1][field]) {
         alert(`O campo ${field} é inválido.`);
         throw new Error(`The ${field} field is invalid.`);
       }
