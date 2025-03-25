@@ -145,11 +145,16 @@ async function post(form) {
   let flagError = false;
 
   try {
-    const response = await fetch('http://localhost:3001/save-data', {
+    const response = await fetch('https://fluoridated-quiet-virgo.glitch.me/save', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data.elements),
     });
+
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+
     const result = response.json();
 
     alert(result.message);

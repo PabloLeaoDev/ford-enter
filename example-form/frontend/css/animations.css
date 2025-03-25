@@ -1,0 +1,15 @@
+.forms { transition: opacity 2.5s, transform 2.5s; }
+
+button[type='submit'] { transition: 0.3s; }
+
+.in-focus {
+    box-shadow: 0px 0px 10px rgba(19, 81, 216, 0.5);
+    border-color: #1351d8;
+}
+
+.in-mouseover-btn { transform: scale(1.1); }
+
+.in-mouseover-link {
+    transition: 0.3s;
+    text-shadow: 2px 2px 5px rgba(19, 81, 216, 0.5);
+}
