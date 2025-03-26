@@ -1,7 +1,25 @@
 import { createServer } from 'http';
 import { readFile, writeFile } from 'fs';
 
-const PORT = 8888 || 8080 || 5000;
+let PORT = 3000;
+let tries = 1;
+
+function changePort(tries) {
+  switch (tries) {
+    case 1:
+      PORT = 8000; 
+      break;
+    case 2:
+      PORT = 8888; 
+      break;
+    case 3:
+      PORT = 5000; 
+      break;
+    default:
+      PORT = 3000;
+      break;
+  }
+}
 
 const server = createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -75,6 +93,9 @@ server.listen(PORT, () => {
   if (err.code === 'EADDRINUSE') {
     console.log(`Porta ${PORT} em uso, tentando reiniciar...`);
     setTimeout(() => server.listen(PORT), 1000);
+    changePort(tries);
+    tries++;
+    if (tries > 3) tries = 1;
   } else {
     console.error('Erro no servidor:', err);
   }

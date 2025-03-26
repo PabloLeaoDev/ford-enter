@@ -53,11 +53,11 @@ function alphabetValidator(text) {
     alphabet = Array.from({ length: 26 }, (_, i) =>
       String.fromCharCode(65 + i)
     ),
-    combAlpha = alphabet.concat(accentedLetters),
+    combAlpha = alphabet.concat(accentedLetters).concat(' '),
     getChars = text
       .split('')
       .map((char) => char.toUpperCase())
-      .map((char) => (!combAlpha.includes(char) ? '' : char));
+      .map((char) => (combAlpha.includes(char) ? char : ''));
 
   return !getChars.includes('');
 }
@@ -104,18 +104,21 @@ function phoneNumberValidator(phoneNumber) {
 function formValidator(formFields) {
   const isNameFieldValid = nameValidator(formFields.name),
     isMiddlenameFieldValid = alphabetValidator(formFields.middlename),
+    isEmailFieldValid = formFields.email.split('').includes('.'),
     isCpfFieldValid = cpfValidator(formFields.cpf),
     isPhoneNumberFieldValid = phoneNumberValidator(formFields.phoneNumber);
 
   const areFieldsValid =
     isNameFieldValid &&
     isMiddlenameFieldValid &&
+    isEmailFieldValid &&
     isCpfFieldValid &&
     isPhoneNumberFieldValid;
 
   return [areFieldsValid, {
     nome: isNameFieldValid,
     sobrenome: isMiddlenameFieldValid,
+    email: isEmailFieldValid,
     cpf: isCpfFieldValid,
     telefone: isPhoneNumberFieldValid
   }];
@@ -147,17 +150,21 @@ async function post(form) {
   try {
     const response = await fetch('https://fluoridated-quiet-virgo.glitch.me/save', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
       body: JSON.stringify(data.elements),
     });
 
     if (!response.ok) {
-      throw new Error(`Erro HTTP: ${response.status}`);
+      const errorData = await response.json();
+      throw new Error(`Erro HTTP: ${response.status}`)
     }
 
-    const result = response.json();
+    const result = await response.json();
 
-    alert(result.message);
+    alert(result.message || 'Dados enviados com sucesso!');
   } catch (err) {
     flagError = true;
     alert('Erro ao salvar os dados.');
@@ -191,9 +198,11 @@ function applyCpfMask(cpf) {
 
 function applyPhoneMask(phone) {
   phone = phone.replace(/\D/g, '');
-  if (phone.length <= 2) {
+  if (phone.length === 0) {
+    return phone;
+  } else if (phone.length > 0 && phone.length <= 2) {
     return `(${phone}`;
-  } else if (phone.length <= 6) {
+  } else if (phone.length <= 7) {
     return `(${phone.slice(0, 2)}) ${phone.slice(2)}`;
   } else {
     return `(${phone.slice(0, 2)}) ${phone.slice(2, 7)}-${phone.slice(7, 11)}`;
