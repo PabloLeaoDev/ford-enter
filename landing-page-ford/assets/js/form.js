@@ -29,5 +29,4 @@ function Submit() {
     if (name.value) {
         alert(`Obrigado sr(a) ${name.value}. Os seus dados foram encaminhados com sucesso!`);
     }
-
 }
