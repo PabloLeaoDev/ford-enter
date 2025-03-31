@@ -43,7 +43,7 @@ const server = createServer((req, res) => {
                     if (!err && fileData) jsonData = JSON.parse(fileData);
 
                     for (let obj of jsonData) {
-                        if (obj.cpf === newData.cpf) throw new Error('This datas exists in database.');
+                        if (obj.cpf === newData.cpf) throw new Error('This datas exist in database.');
                     }
 
                     jsonData.push(newData);
