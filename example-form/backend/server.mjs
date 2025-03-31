@@ -1,25 +1,7 @@
 import { createServer } from 'http';
 import { readFile, writeFile } from 'fs';
 
-let PORT = 3000;
-let tries = 1;
-
-function changePort(tries) {
-  switch (tries) {
-    case 1:
-      PORT = 8000; 
-      break;
-    case 2:
-      PORT = 8888; 
-      break;
-    case 3:
-      PORT = 5000; 
-      break;
-    default:
-      PORT = 3000;
-      break;
-  }
-}
+const PORT = 3000;
 
 const server = createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -68,35 +50,25 @@ const server = createServer((req, res) => {
 
                     writeFile('data.json', JSON.stringify(jsonData, null, 2), 'utf8', (err) => {
                         if (err) {
-                            res.writeHead(500, { "Content-Type": "application/json" });
+                            res.writeHead(500, { 'Content-Type': 'application/json' });
                             res.end(JSON.stringify({ error: 'Erro ao salvar os dados' }));
                         } else {
-                            res.writeHead(200, { "Content-Type": "application/json" });
+                            res.writeHead(200, { 'Content-Type': 'application/json' });
                             res.end(JSON.stringify({ message: 'Dados salvos com sucesso!' }));
                         }
                     });
                 });
             } catch (error) {
-                res.writeHead(400, { "Content-Type": "application/json" });
+                res.writeHead(400, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ error: 'Erro ao processar os dados' }));
             }
         });
     } else {
-        res.writeHead(404, { "Content-Type": "application/json" });
+        res.writeHead(404, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: 'Rota não encontrada' }));
     }
 });
 
 server.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
-}).on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.log(`Porta ${PORT} em uso, tentando reiniciar...`);
-    setTimeout(() => server.listen(PORT), 1000);
-    changePort(tries);
-    tries++;
-    if (tries > 3) tries = 1;
-  } else {
-    console.error('Erro no servidor:', err);
-  }
-});
+}).on('error', (err) => console.error('Erro no servidor:', err));
