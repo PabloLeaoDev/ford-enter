@@ -9,6 +9,43 @@
     <link rel="stylesheet" href="assets/css/lancamento.css">
     <link rel="stylesheet" href="assets/css/media.css">
     <link rel="stylesheet" href="assets/css/animations.css">
+    <style>
+        #dinamic-dialog {
+           border-radius: 10px;
+        }
+       #dinamic-dialog table {
+           width: 1200px;
+           border-collapse: collapse;
+           margin: 20px auto;
+       }
+       #dinamic-dialog tbody {
+           display: contents;
+       }
+       #dinamic-dialog th,
+       #dinamic-dialog td {
+           border: 1px solid black;
+           padding: 10px;
+           text-align: center;
+       }
+       #dinamic-dialog td {
+           display: table-cell;
+       }
+       #dinamic-dialog th {
+           background-color: #f2f2f2;
+           text-transform: uppercase;
+       }
+       #dinamic-dialog img {
+           width: 150px;
+            height: auto;
+       }
+       #close-dialog {
+           width: 3%;
+           padding: 4px;
+           margin: 0; 
+           margin-left: 97%;
+           font-size: medium;
+       }
+   </style>
 </head>
 <body>
     <header>
@@ -66,6 +103,74 @@
             </tbody>
         </table>
         <button id="btn-compare">Comparar Carros</button>
+        <dialog id="dinamic-dialog">
+            <button id="close-dialog">X</button>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Campos</th>
+                        <th>Carro 1</th>
+                        <th>Carro 2</th>
+                    </tr>
+                    <tr>
+                        <th id="field-image">Imagem</th>
+                        <td><img src="" alt="Carro 1" id="car-image1"></td>
+                        <td><img src="" alt="Carro 2" id="car-image2"></td>
+                    </tr>
+                    <tr>
+                        <th id="field-name">Nome</th>
+                        <td id="car-name1"></td>
+                        <td id="car-name2"></td>
+                    </tr>
+                    <tr>
+                        <th id="field-price">Preço</th>
+                        <td id="car-price1"></td>
+                        <td id="car-price2"></td>
+                    </tr>
+                    <tr>
+                        <th id="field-hbucket">Altura do Baú</th>
+                        <td id="car-hbucket1"></td>
+                        <td id="car-hbucket2"></td>
+                    </tr>
+                    <tr>
+                        <th id="field-hvehicle">Altura do Veículo</th>
+                        <td id="car-hvehicle1"></td>
+                        <td id="car-hvehicle2"></td>
+                    </tr>
+                    <tr>
+                        <th id="field-hsoil">Altura do Solo</th>
+                        <td id="car-hsoil1"></td>
+                        <td id="car-hsoil2"></td>
+                    </tr>
+                    <tr>
+                        <th id="field-lcapacity">Capacidade de Carga</th>
+                        <td id="car-lcapacity1"></td>
+                        <td id="car-lcapacity2"></td>
+                    </tr>
+                    <tr>
+                        <th id="field-vbucket">Volume do Baú</th>
+                        <td id="car-vbucket1"></td>
+                        <td id="car-vbucket2"></td>
+                    </tr>
+                    <tr>
+                        <th id="field-engname">Nome do Motor</th>
+                        <td id="car-engname1"></td>
+                        <td id="car-engname2"></td>
+                    </tr>
+                    <tr>
+                        <th id="field-engpower">Potência do Motor</th>
+                        <td id="car-engpower1"></td>
+                        <td id="car-engpower2"></td>
+                    </tr>
+                    <tr>
+                        <th id="field-wheel">Rodas</th>
+                        <td id="car-wheel1"></td>
+                        <td id="car-wheel2"></td>
+                    </tr>
+                </tbody>
+            </table>            
+        </dialog>
+
     </main>
     <footer>
         <div>
