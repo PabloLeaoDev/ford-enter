@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "name": "Pablo",
+    "middlename": "Leão",
+    "email": "teste@teste.teste",
+    "cpf": "866.946.400-48",
+    "phoneNumber": "(99) 99999-9999",
+    "contact": "TELEFONE"
+  }
+]
