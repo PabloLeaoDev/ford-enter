@@ -219,3 +219,18 @@ footer {
 
     img { height: 30px; }
 }
+
+#caurosel { margin: 100px; }
+
+#carousel-buttons { 
+    display: flex; 
+    flex-direction: row;
+    gap: 15px;
+}
+
+#back:hover,
+#next:hover 
+{ 
+    transform: none;
+    background-color: var(--primary-color);
+}

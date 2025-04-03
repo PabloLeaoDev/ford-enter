@@ -137,67 +137,58 @@ function whenClickingOnCheckbox(checkbox) {
     }
 }
 
-function updateFieldTable(firstEl, secondEl, field, symbol = '', key = 'innerHTML') {
+function updateFieldTable(firstEl, secondEl, field, symbol, domKey = 'innerHTML', isEngine = false) {
     const elements = [firstEl, secondEl];
     for (let i in elements) {
-        // if (symbol === 'R$') elements[i][key] = `${cars[i][field]}${symbol}`
-        elements[i][key] = `${cars[i][field]}${symbol}`
-    };
+        if (symbol === 'R$') {
+            elements[i][domKey] = `${symbol} ${cars[i][field]}`;
+            continue;
+        };
+
+        if (isEngine) {
+            elements[i][domKey] = `${cars[i].engine[field]}${symbol}`;
+            continue;
+        }
+
+        elements[i][domKey] = `${cars[i][field]}${symbol}`;
+    }
 }
 
 function updateData() {
     const tdImage1 = document.getElementById('car-image1');
     const tdImage2 = document.getElementById('car-image2');
-    updateFieldTable(tdImage1, tdImage2, 'image', key = 'src');
-    
     const tdName1 = document.getElementById('car-name1');
     const tdName2 = document.getElementById('car-name2');
-    updateFieldTable(tdName1, tdName2, 'name', key = 'name');
-
     const tdPrice1 = document.getElementById('car-price1');
     const tdPrice2 = document.getElementById('car-price2');
-    tdPrice1.innerHTML = `R$ ${cars[0].price}`;
-    tdPrice2.innerHTML = `R$ ${cars[1].price}`;
-
     const tdHbucket1 = document.getElementById('car-hbucket1');
     const tdHbucket2 = document.getElementById('car-hbucket2');
-    tdHbucket1.innerHTML = `${cars[0].heightBucket}m`;
-    tdHbucket2.innerHTML = `${cars[1].heightBucket}m`;
-
     const tdHvehicle1 = document.getElementById('car-hvehicle1');
     const tdHvehicle2 = document.getElementById('car-hvehicle2');
-    tdHvehicle1.innerHTML = `${cars[0].heightVehicle}m`;
-    tdHvehicle2.innerHTML = `${cars[1].heightVehicle}m`;
-
     const tdHsoil1 = document.getElementById('car-hsoil1');
     const tdHsoil2 = document.getElementById('car-hsoil2');
-    tdHsoil1.innerHTML = `${cars[0].heightSoil}cm`;
-    tdHsoil2.innerHTML = `${cars[1].heightSoil}cm`;
-
     const tdLoadCapacity1 = document.getElementById('car-lcapacity1');
     const tdLoadCapacity2 = document.getElementById('car-lcapacity2');
-    tdLoadCapacity1.innerHTML = `${cars[0].loadCapacity}kg`;
-    tdLoadCapacity2.innerHTML = `${cars[1].loadCapacity}kg`;
-
     const tdVolumeBucket1 = document.getElementById('car-vbucket1');
     const tdVolumeBucket2 = document.getElementById('car-vbucket2');
-    tdVolumeBucket1.innerHTML = `${cars[0].volumeBucket}m³`;
-    tdVolumeBucket2.innerHTML = `${cars[1].volumeBucket}m³`;
-
     const tdEngineName1 = document.getElementById('car-engname1');
     const tdEngineName2 = document.getElementById('car-engname2');
-    tdEngineName1.innerHTML = cars[0].engine.name;
-    tdEngineName2.innerHTML = cars[1].engine.name;
-
     const tdEnginePower1 = document.getElementById('car-engpower1');
     const tdEnginePower2 = document.getElementById('car-engpower2');
-    tdEnginePower1.innerHTML = `${cars[0].engine.power}cv`;
-    tdEnginePower2.innerHTML = `${cars[1].engine.power}cv`;
-    
     const tdWheel1 = document.getElementById('car-wheel1');
     const tdWheel2 = document.getElementById('car-wheel2');
-    tdWheel1.innerHTML = cars[0].wheel;
-    tdWheel2.innerHTML = cars[1].wheel;
+
+    updateFieldTable(tdImage1, tdImage2, 'image', '', 'src');
+    updateFieldTable(tdName1, tdName2, 'name', '');
+    updateFieldTable(tdPrice1, tdPrice2, 'price', 'R$');
+    updateFieldTable(tdHbucket1, tdHbucket2, 'heightBucket', 'm');
+    updateFieldTable(tdHvehicle1, tdHvehicle2, 'heightVehicle', 'm');
+    updateFieldTable(tdHsoil1, tdHsoil2, 'heightSoil', 'cm');
+    updateFieldTable(tdLoadCapacity1, tdLoadCapacity2, 'loadCapacity', 'kg');
+    updateFieldTable(tdVolumeBucket1, tdVolumeBucket2, 'volumeBucket', 'm³');
+    updateFieldTable(tdEngineName1, tdEngineName2, 'name', '', 'innerHTML', true);
+    updateFieldTable(tdEnginePower1, tdEnginePower2, 'power', 'cv', 'innerHTML', true);
+    updateFieldTable(tdWheel1, tdWheel2, 'wheel', '');
 }
 
 function showCompare() {

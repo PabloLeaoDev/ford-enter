@@ -22,6 +22,4 @@ footer { > div { img:hover { transform: translateY(-5px); } } }
     transition: opacity 1s ease-in-out; 
 }
 
-.fade-in {
-    opacity: 0;
-}
+.fade-in { opacity: 0; }

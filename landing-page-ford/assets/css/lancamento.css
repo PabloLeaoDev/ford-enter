@@ -71,3 +71,40 @@ table tr td img {
     width: 60%; 
     margin-bottom: 20px;
 }
+
+#dinamic-dialog { 
+    width: 90%;
+    border-radius: 10px;
+}
+#dinamic-dialog table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 26px auto;
+}
+#dinamic-dialog tbody { display: contents; }
+#dinamic-dialog th,
+#dinamic-dialog td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+#dinamic-dialog td { display: table-cell; }
+#dinamic-dialog th {
+    background-color: #f2f2f2;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#dinamic-dialog img {
+    margin: 0;
+    width: 40%;
+    height: auto;
+}
+#close-dialog {
+    width: 30px;
+    padding: 4px;
+    margin: 0; 
+    position: absolute;
+    right: 16px;
+    top: 7px;
+    font-size: 100%;
+}
