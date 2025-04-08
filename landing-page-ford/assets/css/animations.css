@@ -13,6 +13,10 @@ table tr td img:hover { transform:scale(1.05); }
 
 button:hover { transform: translateY(-3px); }
 
+button:disabled { background: gray; }
+
+button:disabled:hover { transform: none; }
+
 footer { > div { img:hover { transform: translateY(-5px); } } }
 
 /* JS */
