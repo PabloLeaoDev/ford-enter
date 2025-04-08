@@ -1,6 +1,5 @@
 const button = document.querySelector("button[type='submit']");
 button.disabled = true;
-button.classList.add('disabled-btn');
 document.addEventListener('DOMContentLoaded', () => {
     document.body.style.opacity = 0;
     document.body.style.transition = 'opacity 1s';
@@ -19,11 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkTerms = document.getElementById('iterms');
     checkTerms.addEventListener('click', () => {
         if (checkTerms.checked) {
-            button.classList.remove('disabled-btn');
+            button.disabled = false;
             return;
         }
-
-        button.classList.add('disabled-btn');
+        button.disabled = true;
     });
 
     button.addEventListener('mouseover', () => button.classList.add('in-mouseover-btn'));
