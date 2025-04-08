@@ -1,15 +1,15 @@
 class Car {
     constructor() {
-        this.name = "";
+        this.name = '';
         this.price = 0;
-        this.heightBucket = 0;
-        this.heightVehicle = 0;
-        this.heightSoil = 0;
+        this.bucketHeight = 0;
+        this.vehicleHeight = 0;
+        this.soilHeight = 0;
         this.loadCapacity = 0;
-        this.volumeBucket = 0;
+        this.bucketVolume = 0;
         this.engine = null;
         this.wheel = null;
-        this.image = "";
+        this.image = '';
     }
 }
 
@@ -31,12 +31,12 @@ class CarBuilder {
         return this;
     }
 
-    carBodyBuilder(heightBucket, heightVehicle, heightSoil, loadCapacity, volumeBucket) {
-        this.car.heightBucket = heightBucket;
-        this.car.heightVehicle = heightVehicle;
-        this.car.heightSoil = heightSoil;
+    carBodyBuilder(bucketHeight, vehicleHeight, soilHeight, loadCapacity, bucketVolume) {
+        this.car.bucketHeight = bucketHeight;
+        this.car.vehicleHeight = vehicleHeight;
+        this.car.soilHeight = soilHeight;
         this.car.loadCapacity = loadCapacity;
-        this.car.volumeBucket = volumeBucket;
+        this.car.bucketVolume = bucketVolume;
         return this;
     }
 
@@ -61,7 +61,7 @@ class CarBuilder {
 }
 
 const xl = new CarBuilder()
-    .commercialCharacteristicsBuilder('Ranger XL Cabine Dupla Diesel 4x4 2022', 180_000)
+    .commercialCharacteristicsBuilder('Ranger XL Cabine Diesel 4x4 2022', 180_000)
     .carBodyBuilder(1.1, 1.8, 0.3, 1000, 1.9)
     .engineBuilder('Motor 2.2 Turbo Diesel', 160)
     .wheelBuilder('Rodas Aro 16')
@@ -84,7 +84,7 @@ const storm = new CarBuilder()
     .imageBuilder('./assets/img/storm.jpg')
     .build();
 
-let car;
+let carName;
 let isModalActive = false;
 const cars = [];
 const checkbox = document.querySelectorAll('.check.in');
@@ -96,9 +96,9 @@ function changeModalFlag() {
     isModalActive = !isModalActive;
 }
 
-function carPositionInList(car) {
+function carPositionInList(carName) {
     for (let i in cars) {
-        if (cars[i].nome === car.nome) {
+        if (cars[i].name === carName) {
             return i;
         }
     }
@@ -107,8 +107,10 @@ function carPositionInList(car) {
 }
 
 function whenClickingOnCheckbox(checkbox) {
+    carName = checkbox.nextElementSibling.childNodes[1].textContent;
+
     if (!checkbox.checked) {
-        const carIdx = carPositionInList(car);
+        const carIdx = carPositionInList(carName);
 
         if (carIdx > -1) cars.splice(carIdx, 1);
 
@@ -122,9 +124,9 @@ function whenClickingOnCheckbox(checkbox) {
         return;
     }
 
-    car = checkbox.nextElementSibling.childNodes[1].textContent.trim().split(' ')[1];
+    carName = carName.split(' ')[1];
 
-    switch (car.toLowerCase()) {
+    switch (carName.toLowerCase()) {
         case 'xl':
             cars.push(xl);
             break;
@@ -137,58 +139,76 @@ function whenClickingOnCheckbox(checkbox) {
     }
 }
 
-function updateFieldTable(firstEl, secondEl, field, symbol, domKey = 'innerHTML', isEngine = false) {
-    const elements = [firstEl, secondEl];
-    for (let i in elements) {
-        if (symbol === 'R$') {
-            elements[i][domKey] = `${symbol} ${cars[i][field]}`;
-            continue;
-        };
+function updateFieldTable(index, element, field, symbolR = '', symbolL = '', domKey = 'innerHTML', isEngine = false) {
+    let text = `${symbolR} ${cars[index - 1][field]}${symbolL}`;
 
-        if (isEngine) {
-            elements[i][domKey] = `${cars[i].engine[field]}${symbol}`;
-            continue;
-        }
+    if (isEngine) text = `${cars[index - 1].engine[field]}${symbolL}`;
 
-        elements[i][domKey] = `${cars[i][field]}${symbol}`;
-    }
+    element[domKey] = text.trim();
 }
 
 function updateData() {
-    const tdImage1 = document.getElementById('car-image1');
-    const tdImage2 = document.getElementById('car-image2');
-    const tdName1 = document.getElementById('car-name1');
-    const tdName2 = document.getElementById('car-name2');
-    const tdPrice1 = document.getElementById('car-price1');
-    const tdPrice2 = document.getElementById('car-price2');
-    const tdHbucket1 = document.getElementById('car-hbucket1');
-    const tdHbucket2 = document.getElementById('car-hbucket2');
-    const tdHvehicle1 = document.getElementById('car-hvehicle1');
-    const tdHvehicle2 = document.getElementById('car-hvehicle2');
-    const tdHsoil1 = document.getElementById('car-hsoil1');
-    const tdHsoil2 = document.getElementById('car-hsoil2');
-    const tdLoadCapacity1 = document.getElementById('car-lcapacity1');
-    const tdLoadCapacity2 = document.getElementById('car-lcapacity2');
-    const tdVolumeBucket1 = document.getElementById('car-vbucket1');
-    const tdVolumeBucket2 = document.getElementById('car-vbucket2');
-    const tdEngineName1 = document.getElementById('car-engname1');
-    const tdEngineName2 = document.getElementById('car-engname2');
-    const tdEnginePower1 = document.getElementById('car-engpower1');
-    const tdEnginePower2 = document.getElementById('car-engpower2');
-    const tdWheel1 = document.getElementById('car-wheel1');
-    const tdWheel2 = document.getElementById('car-wheel2');
+    const ids = [
+        'name',
+        'price',
+        'bucketh',
+        'vehicleh',
+        'soilh',
+        'lcapacity',
+        'bucketv',
+        'engname',
+        'engpower',
+        'wheel',
+        'image'
+    ];
 
-    updateFieldTable(tdImage1, tdImage2, 'image', '', 'src');
-    updateFieldTable(tdName1, tdName2, 'name', '');
-    updateFieldTable(tdPrice1, tdPrice2, 'price', 'R$');
-    updateFieldTable(tdHbucket1, tdHbucket2, 'heightBucket', 'm');
-    updateFieldTable(tdHvehicle1, tdHvehicle2, 'heightVehicle', 'm');
-    updateFieldTable(tdHsoil1, tdHsoil2, 'heightSoil', 'cm');
-    updateFieldTable(tdLoadCapacity1, tdLoadCapacity2, 'loadCapacity', 'kg');
-    updateFieldTable(tdVolumeBucket1, tdVolumeBucket2, 'volumeBucket', 'm³');
-    updateFieldTable(tdEngineName1, tdEngineName2, 'name', '', 'innerHTML', true);
-    updateFieldTable(tdEnginePower1, tdEnginePower2, 'power', 'cv', 'innerHTML', true);
-    updateFieldTable(tdWheel1, tdWheel2, 'wheel', '');
+    const fields = [
+        'name',
+        'price',
+        'bucketHeight',
+        'vehicleHeight',
+        'soilHeight',
+        'loadCapacity',
+        'bucketVolume',
+        'name',
+        'power',
+        'wheel',
+        'image'
+    ];
+
+    ids.forEach((id, index) => {
+        for (let i = 1; i <= 2; i++) {
+            const element = document.getElementById(`car-${id}${i}`);
+
+            if (id === 'price') {
+                updateFieldTable(i, element, fields[index], 'R$');
+                continue;
+            } else if (id === 'bucketh' || id === 'vehicleh') {
+                updateFieldTable(i, element, fields[index], '', 'm');
+                continue;
+            } else if (id === 'soilh') {
+                updateFieldTable(i, element, fields[index], '', 'cm');
+                continue;
+            } else if (id === 'lcapacity') {
+                updateFieldTable(i, element, fields[index], '', 'kg');
+                continue;
+            } else if (id === 'bucketv') {
+                updateFieldTable(i, element, fields[index], '', 'm³');
+                continue;
+            } else if (id === 'image') {
+                updateFieldTable(i, element, fields[index], '', '', 'src');
+                continue;
+            } else if (id === 'engname' && index > 0) {
+                updateFieldTable(i, element, fields[index], '', '', 'innerHTML', true);
+                continue;
+            } else if (id === 'engpower') {
+                updateFieldTable(i, element, fields[index], '', 'hp', 'innerHTML', true);
+                continue;
+            }
+
+            updateFieldTable(i, element, fields[index]);
+        }
+    });
 }
 
 function showCompare() {
