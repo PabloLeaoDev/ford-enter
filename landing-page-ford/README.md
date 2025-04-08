@@ -1,4 +1,0 @@
-# CAROUSEL
-## []
-
-# COMPARE
