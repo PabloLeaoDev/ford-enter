@@ -1,0 +1,45 @@
+/* Sidebar */
+.sidebar {
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+.sidebar.active {
+  width: 200px;
+}
+
+/* Glass effect card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  min-width: 280px;
+  transition: all 0.4s ease;
+}
+
+/* Background image */
+.bg-image {
+  /* background-image: url('assets/ford-ranger.png'); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar.active {
+    width: 150px;
+  }
+}
