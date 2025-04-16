@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
@@ -8,7 +8,7 @@ import { NgIf } from '@angular/common';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  // imports: [NgIf]
+  imports: [NgIf, ReactiveFormsModule]
 })
 export class LoginComponent {
   loginForm = new FormGroup({

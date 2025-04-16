@@ -1,24 +1,15 @@
-<div class="login-container">
-  <div class="card login-card shadow">
-    <div class="card-header bg-primary text-white">
-      <img src="assets/ford-logo.png" alt="Ford Logo" class="logo">
-      <h3 class="text-center mt-2">Acesso ao Sistema</h3>
-    </div>
-    <div class="card-body">
-      <form (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label for="username" class="form-label">Usuário</label>
-          <input type="text" class="form-control" id="username" name="username" required>
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Entrar</button>
-      </form>
-      <!-- <div *ngIf="loginError" class="alert alert-danger mt-3">
-        Credenciais inválidas!
-      </div> -->
-    </div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="username" class="form-label">Usuário</label>
+    <input type="text" class="form-control" id="username" formControlName="username">
+    <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" 
+         class="text-danger">Usuário obrigatório.</div>
   </div>
-</div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Senha</label>
+    <input type="password" class="form-control" id="password" formControlName="password">
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" 
+         class="text-danger">Senha obrigatória.</div>
+  </div>
+  <button type="submit" class="btn btn-primary w-100">Entrar</button>
+</form>

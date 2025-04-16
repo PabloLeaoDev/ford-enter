@@ -11,9 +11,8 @@ export class AuthService {
 
   login(username: string, password: string): boolean {
     const isAuthenticated = username === this.validUser.username && password === this.validUser.password;
-    if (isAuthenticated) {
-      localStorage.setItem('isAuthenticated', 'true');
-    }
+    if (isAuthenticated) localStorage.setItem('isAuthenticated', 'true');
+
     return isAuthenticated;
   }
 
