@@ -1,0 +1,18 @@
+.dashboard-container {
+  padding: 2rem;
+}
+
+.metric-card {
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+}
+
+.table-responsive {
+  max-height: 400px;
+  overflow-y: auto;
+}
