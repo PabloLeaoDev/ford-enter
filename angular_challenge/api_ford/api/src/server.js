@@ -16,15 +16,15 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.post('/login', (req, res) => {
     try {
-        const { nome, senha } = req.body
+        const { username, password } = req.body
 
-        if (!nome || !senha) {
+        if (!username || !password) {
             return res.status(400).json({
                 message: 'O campo de usuário ou senha não foi preenchido!'
             });
         }
 
-        if (nome !== 'admin' || senha !== '123') {
+        if (username !== 'admin' || password !== '123') {
             return res.status(404).json({
                 message: 'O nome de usuário ou senha está incorreto ou não foi cadastrado!'
             });
@@ -32,6 +32,7 @@ app.post('/login', (req, res) => {
 
         return res.status(200).json({
             id: 1,
+            success: true,
             nome: 'admin',
             email: 'admin@email.com'
         });
