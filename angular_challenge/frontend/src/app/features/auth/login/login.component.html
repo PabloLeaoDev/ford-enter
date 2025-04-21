@@ -2,14 +2,22 @@
   <div class="mb-3">
     <label for="username" class="form-label">Usuário</label>
     <input type="text" class="form-control" id="username" formControlName="username">
-    <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" 
+    <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
          class="text-danger">Usuário obrigatório.</div>
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Senha</label>
     <input type="password" class="form-control" id="password" formControlName="password">
-    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" 
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
          class="text-danger">Senha obrigatória.</div>
   </div>
-  <button type="submit" class="btn btn-primary w-100">Entrar</button>
+
+  <div *ngIf="errorMessage" class="alert alert-danger mb-3">
+    {{ errorMessage }}
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100" [disabled]="isLoading">
+    <span *ngIf="!isLoading">Entrar</span>
+    <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  </button>
 </form>

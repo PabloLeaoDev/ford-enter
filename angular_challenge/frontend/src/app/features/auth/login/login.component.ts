@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { catchError, finalize } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -15,15 +17,31 @@ export class LoginComponent {
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
+  isLoading = false;
+  errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      this.isLoading = true;
+      this.errorMessage = '';
+
       const { username, password } = this.loginForm.value;
-      if (this.authService.login(username!, password!)) {
-        this.router.navigate(['/home']);
-      }
+
+      this.authService.login(username!, password!)
+        .pipe(
+          finalize(() => this.isLoading = false),
+          catchError(error => {
+            this.errorMessage = error.error?.message || 'Erro ao fazer login';
+            return of(null);
+          })
+        )
+        .subscribe(response => {
+          if (response?.success) {
+            this.router.navigate(['/home']);
+          }
+        });
     }
   }
 }
