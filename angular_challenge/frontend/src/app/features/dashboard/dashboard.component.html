@@ -3,7 +3,7 @@
     <button class="back" routerLink="/home">&#10094;</button>
     <h2 class="mb-4">Dashboard <small class="text-muted">Controle de Veículos</small></h2>
   </div>
-  
+
   <div class="row">
     <div class="col-md-4">
       <div class="card metric-card bg-primary text-white">
@@ -31,13 +31,21 @@
     </div>
   </div>
 
-  <!-- @if (selectedVehicle) { -->
-    <!-- exibur imagem do carro -->
-    <!-- <img src="" alt="">  -->
-  <!-- } @else { -->
-    <!-- exibur imagem generica; a silhueta de um carro com uma interrogação -->
-    <!-- <img src="" alt=""> -->
-  <!-- } -->
+  <div class="mb-3">
+    <input type="text" class="search-vmodel" placeholder="Buscar por nome..." #vmodelInput />
+    <button (click)="loadVehicle()" class="btn btn-primary mt-2">
+      <i class="bi bi-search"></i> Buscar Modelo
+    </button>
+  </div>
+
+  <div class="show-model">
+    <h5>Modelo: {{ selectedVehicle?.model || 'N/A' }}</h5>
+    @if (selectedVehicle) {
+      <img [src]="selectedVehicle.img" [alt]="selectedVehicle.model">
+    } @else {
+      <img src="http://localhost:3000/img/car-shadow.png" alt="car void">
+    }
+  </div>
 
   <div class="card shadow">
     <div class="card-header bg-light">
@@ -47,7 +55,7 @@
       <div class="mb-3">
         <input type="text" class="form-control" placeholder="Buscar por código...">
         <button (click)="searchByCode('TEST')" class="btn btn-primary mt-2">
-          <i class="bi bi-search"></i> Buscar
+          <i class="bi bi-search"></i> Buscar Detalhes
         </button>
       </div>
       <div class="table-responsive">

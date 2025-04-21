@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { VehicleService } from './services/vehicle.service';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
 
 @Component({
   selector: 'app-dashboard',
@@ -12,17 +11,18 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./dashboard.component.css'],
   imports: [NgFor, CommonModule, FormsModule, RouterLink]
 })
-export class DashboardComponent implements OnInit {
-  searchForm: FormGroup; // Declare aqui
-  vehicles: any[] = [];
+export class DashboardComponent implements OnInit, AfterViewInit {
+  searchForm: FormGroup;
   vehicleData: any[] = [];
   selectedVehicle: any;
 
+  @ViewChild('vmodelInput', { static: false }) vmodelInput: ElementRef | undefined;
+
   constructor(
-    private fb: FormBuilder, // Injetado corretamente
-    private vehicleService: VehicleService
+    private fb: FormBuilder,
+    private vehicleService: VehicleService,
+    private elementRef: ElementRef
   ) {
-    // Inicialize o form no construtor
     this.searchForm = this.fb.group({
       searchCode: ['']
     });
@@ -30,7 +30,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.setupSearch();
-    this.loadVehicles();
+  }
+
+  ngAfterViewInit(): void {
+    this.loadVehicle();
   }
 
   private setupSearch(): void {
@@ -39,24 +42,29 @@ export class DashboardComponent implements OnInit {
         debounceTime(500),
         distinctUntilChanged()
       )
-      .subscribe(value => {
+      .subscribe((value) => {
         if (value) this.searchByCode(value);
       });
   }
 
-  private loadVehicles(): void {
-    this.vehicleService.getVehicles().subscribe(data => {
-      this.vehicles = data;
-    });
+  loadVehicle(): void {
+    const vehicleModel = this.vmodelInput?.nativeElement?.value;
+
+    if (vehicleModel) {
+      this.vehicleService.getVehicle(vehicleModel).subscribe((data) => {
+        this.onVehicleSelect(data);
+      });
+    }
   }
 
   searchByCode(code: string): void {
-    this.vehicleService.getVehicleData(code).subscribe(data => {
+    this.vehicleService.getVehicleData(code).subscribe((data) => {
       this.vehicleData = data ? [data] : [];
     });
   }
 
   onVehicleSelect(vehicle: any): void {
     this.selectedVehicle = vehicle;
+    console.log(vehicle);
   }
 }

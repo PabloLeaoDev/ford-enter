@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly validUser = { username: 'admin', password: '123456' };
+  private apiUrl = 'http://localhost:3000/login';
+  private readonly validUser = { username: 'admin', password: '123' };
 
   constructor(private router: Router) {}
 

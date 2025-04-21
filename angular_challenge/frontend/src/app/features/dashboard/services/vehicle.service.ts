@@ -10,8 +10,10 @@ export class VehicleService {
 
   constructor(private http: HttpClient) {}
 
-  getVehicles(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/vehicle`);
+  getVehicle(vehicleModel: string): Observable<any[]> {
+    if (!vehicleModel) return this.http.get<any[]>(`${this.apiUrl}/vehicle`);
+
+    return this.http.get<any[]>(`${this.apiUrl}/vehicle?vehicleModel=${vehicleModel}`);
   }
 
   getVehicleData(code: string): Observable<any> {
