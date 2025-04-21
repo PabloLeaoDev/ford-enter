@@ -1,19 +1,84 @@
-.login-container {
+main {
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  background-color: #f8f9fa;
 }
 
-.login-card {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 10px;
+section {
+  height: 100%;
+}
+
+section.image-container {
+  width: 60%;
+  background-image: url('http://localhost:3000/img/ranger.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+section.auth {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f6f8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
   display: block;
-  margin: 0 auto;
-  width: 100px;
+  margin: 0 auto 60px auto;
+  width: 200px;
+}
+
+
+.login-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #198754;
+  margin-bottom: 25px;
+}
+
+input.form-control {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 20px;
+}
+
+input#username {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1077/1077063.png');
+}
+
+input#password {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/3064/3064155.png');
+}
+
+.text-danger {
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+button.btn-primary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  border-radius: 6px;
+  padding: 10px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.spinner-border {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    padding: 20px;
+  }
 }
