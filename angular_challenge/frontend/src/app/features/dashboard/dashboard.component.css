@@ -1,0 +1,45 @@
+.top {
+  display: flex;
+  align-items: center;
+
+  .back {
+    border: none;
+    background: transparent;
+    transform: scale(2);
+    color: rgba(var(--bs-primary-rgb));
+    margin: 0 15px 21px 0;
+  }
+
+  h2 {
+    text-align: justify;
+  }
+}
+
+.row { margin: 15px 0 30px 0; }
+
+.dashboard-container {
+  padding: 2rem;
+}
+
+.metric-card {
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+}
+
+.table-responsive {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .row { gap: 15px; }
+}
+
+@media (min-width: 768px) {
+  .card-body { min-height: 146px; }
+}
