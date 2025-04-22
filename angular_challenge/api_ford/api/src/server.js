@@ -24,7 +24,7 @@ app.post('/login', (req, res) => {
             });
         }
 
-        if (username !== 'admin' || password !== '123') {
+        if (username !== 'admin' || password !== '123456') {
             return res.status(404).json({
                 message: 'O nome de usuário ou senha está incorreto ou não foi cadastrado!'
             });
@@ -84,12 +84,12 @@ app.get('/vehicle', (req, res) => {
         const { vehicleModel } = req.query;
 
         if (!vehicleModel) {
-            return res.status(400).json({
-                message: 'O campo de veículo não foi preenchido!'
-            });
+            return res.status(200).json(vehicles);
         }
 
-        const vehicle = vehicles.find((vehicle) => vehicle.model.toLowerCase() === vehicleModel.toLocaleLowerCase());
+        const vehicle = vehicles.find((v) => 
+            v.model.toLowerCase() === vehicleModel.toLowerCase()
+        );
 
         if (!vehicle) {
             return res.status(404).json({
@@ -97,7 +97,7 @@ app.get('/vehicle', (req, res) => {
             });
         }
 
-        return res.status(200).json({ ...vehicle });
+        return res.status(200).json([vehicle]);
 
     } catch (error) {
         return res.status(500).json({
