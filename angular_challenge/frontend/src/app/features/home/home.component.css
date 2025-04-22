@@ -1,7 +1,9 @@
 .home-container {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
-              /* url('assets/ford-factory.jpg'); */
-  background-size: cover;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)); */
+  background-image: url('http://localhost:3000/img/ranger.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   height: 100vh;
   display: flex;
   justify-content: center;

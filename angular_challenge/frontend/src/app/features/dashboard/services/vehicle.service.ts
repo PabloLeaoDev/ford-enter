@@ -16,7 +16,7 @@ export class VehicleService {
     return this.http.get<any[]>(`${this.apiUrl}/vehicle?vehicleModel=${vehicleModel}`);
   }
 
-  getVehicleData(code: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/vehicleData?code=${code}`);
+  getVehicleData(code: string | undefined): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/vehicleData?vin=${code}`);
   }
 }

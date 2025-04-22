@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   selectedVehicle: any;
 
   @ViewChild('vmodelInput', { static: false }) vmodelInput: ElementRef | undefined;
+  @ViewChild('vdetailInput', { static: false }) vdetailInput: ElementRef | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -57,7 +58,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   }
 
-  searchByCode(code: string): void {
+  searchByCode(code?: string): void {
+    if (!code) code = this.vdetailInput?.nativeElement?.value;
+
     this.vehicleService.getVehicleData(code).subscribe((data) => {
       this.vehicleData = data ? [data] : [];
     });
@@ -65,6 +68,5 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   onVehicleSelect(vehicle: any): void {
     this.selectedVehicle = vehicle;
-    console.log(vehicle);
   }
 }
