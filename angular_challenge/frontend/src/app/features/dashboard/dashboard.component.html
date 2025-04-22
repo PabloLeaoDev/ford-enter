@@ -9,7 +9,7 @@
       <div class="card metric-card bg-primary text-white">
         <div class="card-body">
           <h5><i class="bi bi-currency-dollar"></i> Total de Vendas</h5>
-          <p class="display-6">{{ selectedVehicle?.sales || '0' }}</p>
+          <p class="display-6">{{ selectedVehicle[0]?.sales || '0' }}</p>
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@
       <div class="card metric-card bg-success text-white">
         <div class="card-body">
           <h5><i class="bi bi-wifi"></i> Veículos Conectados</h5>
-          <p class="display-6">{{ selectedVehicle?.connected || '0' }}</p>
+          <p class="display-6">{{ selectedVehicle[0]?.connected || '0' }}</p>
         </div>
       </div>
     </div>
@@ -25,23 +25,28 @@
       <div class="card metric-card bg-warning text-dark">
         <div class="card-body">
           <h5><i class="bi bi-arrow-up-circle"></i> Softwares Atualizados</h5>
-          <p class="display-6">{{ selectedVehicle?.updated || '0' }}</p>
+          <p class="display-6">{{ selectedVehicle[0]?.updated || '0' }}</p>
         </div>
       </div>
     </div>
   </div>
 
   <div class="mb-3">
-    <input type="text" class="search-vmodel" placeholder="Buscar por nome..." #vmodelInput />
+    <select class="form-select search-vmodel" [(ngModel)]="selectedModel" #vmodelInput>
+      <option value="" disabled selected>Selecione um modelo...</option>
+      <option *ngFor="let vehicle of vehicleModels" [value]="vehicle.id">
+        {{ vehicle.model }} 
+      </option>
+    </select>
     <button (click)="loadVehicle()" class="btn btn-primary mt-2">
       <i class="bi bi-search"></i> Buscar Modelo
     </button>
   </div>
 
   <div class="show-model">
-    <h5>Modelo: {{ selectedVehicle?.model || 'N/A' }}</h5>
+    <h5>Modelo: {{ selectedVehicle[0]?.model || 'N/A' }}</h5>
     @if (selectedVehicle) {
-      <img [src]="selectedVehicle.img" [alt]="selectedVehicle.model">
+      <img [src]="selectedVehicle[0].img" [alt]="selectedVehicle[0].model">
     } @else {
       <img src="http://localhost:3000/img/car-shadow.png" alt="car void">
     }

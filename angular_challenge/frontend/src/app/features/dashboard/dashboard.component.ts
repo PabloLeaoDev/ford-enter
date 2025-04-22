@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   searchForm: FormGroup;
   vehicleData: any[] = [];
   selectedVehicle: any;
+  vehicleModels: any[] = [];
+  selectedModel: string = '';
 
   @ViewChild('vmodelInput', { static: false }) vmodelInput: ElementRef | undefined;
   @ViewChild('vdetailInput', { static: false }) vdetailInput: ElementRef | undefined;
@@ -31,6 +33,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.setupSearch();
+    this.loadVehicleModels();
   }
 
   ngAfterViewInit(): void {
@@ -48,8 +51,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       });
   }
 
-  loadVehicle(): void {
-    const vehicleModel = this.vmodelInput?.nativeElement?.value;
+  private loadVehicleModels(): void {
+    this.vehicleService.getVehicle('').subscribe((models) => {
+      this.vehicleModels = models;
+    });
+  }
+
+  loadVehicle(model?: string): void {
+    let vehicleModel = model;
+
+    if (!model) {
+      for (let vehicle of this.vehicleModels) {
+        if (vehicle.id ==  this.selectedModel) vehicleModel = vehicle.model;
+      }
+    }
 
     if (vehicleModel) {
       this.vehicleService.getVehicle(vehicleModel).subscribe((data) => {
@@ -60,9 +75,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   searchByCode(code?: string): void {
     if (!code) code = this.vdetailInput?.nativeElement?.value;
+    console.log(code);
 
     this.vehicleService.getVehicleData(code).subscribe((data) => {
       this.vehicleData = data ? [data] : [];
+      console.log(this.vehicleData);
     });
   }
 
