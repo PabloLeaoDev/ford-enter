@@ -9,7 +9,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(appRoutes),
     provideHttpClient(),
-    AuthService, // Providers globais
-    // Adicione outros serviços/guards aqui
+    AuthService
   ]
 }).catch(err => console.error(err));
