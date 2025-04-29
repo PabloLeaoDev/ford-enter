@@ -44,11 +44,11 @@
   </div>
 
   <div class="show-model">
-    <h5>Modelo: {{ selectedVehicle[0]?.model || 'N/A' }}</h5>
-    @if (selectedVehicle) {
+    <h5>Modelo: {{ selectedVehicle?.[0]?.model || 'N/A' }}</h5>
+    @if (selectedVehicle?.[0]) {
       <img [src]="selectedVehicle[0].img" [alt]="selectedVehicle[0].model">
     } @else {
-      <img src="http://localhost:3000/img/car-shadow.png" alt="car void">
+      <img src="/img/car-shadow.png" alt="car void">
     }
   </div>
 
