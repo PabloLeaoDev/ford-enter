@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
 export class DashboardComponent implements OnInit, AfterViewInit {
   searchForm: FormGroup;
   vehicleData: any[] = [];
-  selectedVehicle: any;
+  selectedVehicle: any[] | null | undefined = [];
   vehicleModels: any[] = [];
   selectedModel: string = '';
 
@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.setupSearch();
     this.loadVehicleModels();
+    this.selectedVehicle = [];
   }
 
   ngAfterViewInit(): void {
@@ -60,30 +61,34 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   loadVehicle(model?: string): void {
     let vehicleModel = model;
 
-    if (!model) {
-      for (let vehicle of this.vehicleModels) {
-        if (vehicle.id ==  this.selectedModel) vehicleModel = vehicle.model;
-      }
+    if (!model && this.selectedModel) {
+      const selected = this.vehicleModels.find((v) => v.id == this.selectedModel);
+      vehicleModel = selected?.model;
     }
 
     if (vehicleModel) {
       this.vehicleService.getVehicle(vehicleModel).subscribe((data) => {
-        this.onVehicleSelect(data);
+        this.selectedVehicle = data;
       });
     }
   }
 
   searchByCode(code?: string): void {
     if (!code) code = this.vdetailInput?.nativeElement?.value;
-    console.log(code);
 
-    this.vehicleService.getVehicleData(code).subscribe((data) => {
-      this.vehicleData = data ? [data] : [];
-      console.log(this.vehicleData);
-    });
+    if (code) {
+      this.vehicleService.getVehicleData(code)?.subscribe((data) => {
+        this.vehicleData = data ? [{
+          code: code,
+          model: this.selectedVehicle?.[0]?.model || 'N/A',
+          status: data.status,
+          lastUpdated: new Date()
+        }] : [];
+      });
+    }
   }
 
   onVehicleSelect(vehicle: any): void {
-    this.selectedVehicle = vehicle;
+    this.selectedVehicle = Array.isArray(vehicle) ? vehicle : [vehicle];
   }
 }

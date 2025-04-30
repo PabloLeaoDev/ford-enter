@@ -12,8 +12,6 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, '..', 'public')));
-
 app.post('/login', (req, res) => {
     try {
         const { username, password } = req.body
@@ -53,7 +51,7 @@ app.get('/vehicle', (req, res) => {
                 sales: 1500,
                 connected: 500,
                 updated: 750,
-                img: 'http://localhost:3000/img/ranger.png'
+                img: '/img/ranger.png'
             },
             {
                 id: 2,
@@ -61,7 +59,7 @@ app.get('/vehicle', (req, res) => {
                 sales: 1500,
                 connected: 500,
                 updated: 750,
-                img: 'http://localhost:3000/img/mustang.png'
+                img: '/img/mustang.png'
             },
             {
                 id: 3,
@@ -69,7 +67,7 @@ app.get('/vehicle', (req, res) => {
                 sales: 1500,
                 connected: 500,
                 updated: 750,
-                img: 'http://localhost:3000/img/territory.png'
+                img: '/img/territory.png'
             },
             {
                 id: 4,
@@ -77,7 +75,7 @@ app.get('/vehicle', (req, res) => {
                 sales: 1500,
                 connected: 500,
                 updated: 750,
-                img: 'http://localhost:3000/img/broncoSport.png'
+                img: '/img/broncoSport.png'
             }
         ];
 

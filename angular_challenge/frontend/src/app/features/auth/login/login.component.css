@@ -9,7 +9,7 @@ section {
 
 section.image-container {
   width: 60%;
-  background-image: url('http://localhost:3000/img/ranger.png');
+  background-image: url('/img/ranger.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
