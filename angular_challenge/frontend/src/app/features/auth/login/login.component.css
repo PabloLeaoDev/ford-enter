@@ -23,6 +23,11 @@ section.auth {
   align-items: center;
   background-color: #f4f6f8;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  form {
+    width: 90%;
+    max-width: 400px;
+  }
 }
 
 .logo {

@@ -43,7 +43,10 @@
   margin: 50px;
   gap: 50px;
 
-  img { width: 100%; }
+  img {
+    width: 100%;
+    max-width: 1000px;
+  }
 }
 
 @media (max-width: 768px) {
