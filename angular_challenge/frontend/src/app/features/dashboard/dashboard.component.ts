@@ -79,10 +79,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (code) {
       this.vehicleService.getVehicleData(code)?.subscribe((data) => {
         this.vehicleData = data ? [{
-          code: code,
-          model: this.selectedVehicle?.[0]?.model || 'N/A',
+          odometro: data.odometro,
+          nivelCombustivel: data.nivelCombustivel,
           status: data.status,
-          lastUpdated: new Date()
+          lat: data.lat,
+          long: data.long
         }] : [];
       });
     }

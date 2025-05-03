@@ -67,18 +67,24 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Código</th>
-              <th>Modelo</th>
+              <th>Odômetro</th>
+              <th>Nível de Combustível</th>
               <th>Status</th>
-              <th>Última Atualização</th>
+              <th>Latitude</th>
+              <th>Lingitude</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of vehicleData">
-              <td>{{ item.code }}</td>
-              <td>{{ item.model }}</td>
-              <td><span class="badge bg-success">{{ item.status }}</span></td>
-              <td>{{ item.lastUpdated | date }}</td>
+              <td>{{ item.odometro }}</td>
+              <td>{{ item.nivelCombustivel }}</td>
+              @if (item.status === 'on') {
+                <td><span class="badge bg-success bg-">{{ item.status }}</span></td>
+              } @else {
+                <td><span class="badge bg-danger bg-">{{ item.status }}</span></td>
+              }
+              <td>{{ item.lat }}</td>
+              <td>{{ item.long }}</td>
             </tr>
           </tbody>
         </table>
