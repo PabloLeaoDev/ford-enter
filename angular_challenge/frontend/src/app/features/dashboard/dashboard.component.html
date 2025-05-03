@@ -32,19 +32,16 @@
   </div>
 
   <div class="mb-3">
-    <select class="form-select search-vmodel" [(ngModel)]="selectedModel" #vmodelInput>
+    <select class="form-select search-vmodel" [(ngModel)]="selectedModel" (change)="loadVehicle()" #vmodelInput>
       <option value="" disabled selected>Selecione um modelo...</option>
       <option *ngFor="let vehicle of vehicleModels" [value]="vehicle.id">
         {{ vehicle.model }}
       </option>
     </select>
-    <button (click)="loadVehicle()" class="btn btn-primary mt-2">
-      <i class="bi bi-search"></i> Buscar Modelo
-    </button>
   </div>
 
   <div class="show-model">
-    <h5>Modelo: {{ selectedVehicle?.[0]?.model || 'N/A' }}</h5>
+    <h5><strong>Modelo:</strong> {{ selectedVehicle?.[0]?.model || 'N/A' }}</h5>
     @if (selectedVehicle?.[0]?.img) {
       <img [src]="selectedVehicle?.[0].img" [alt]="selectedVehicle?.[0].model">
     } @else {

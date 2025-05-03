@@ -36,6 +36,16 @@
   overflow-y: auto;
 }
 
+.show-model {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+  gap: 50px;
+
+  img { width: 100%; }
+}
+
 @media (max-width: 768px) {
   .row { gap: 15px; }
 }

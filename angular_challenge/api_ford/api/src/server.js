@@ -48,9 +48,9 @@ app.get('/vehicle', (req, res) => {
             {
                 id: 1,
                 model: 'Ranger',
-                sales: 1500,
-                connected: 500,
-                updated: 750,
+                sales: 4158,
+                connected: 700,
+                updated: 1550,
                 img: '/img/ranger.png'
             },
             {
@@ -64,17 +64,17 @@ app.get('/vehicle', (req, res) => {
             {
                 id: 3,
                 model: 'Territory',
-                sales: 1500,
-                connected: 500,
-                updated: 750,
+                sales: 4560,
+                connected: 1200,
+                updated: 3050,
                 img: '/img/territory.png'
             },
             {
                 id: 4,
                 model: 'Bronco Sport',
-                sales: 1500,
-                connected: 500,
-                updated: 750,
+                sales: 2791,
+                connected: 900,
+                updated: 2140,
                 img: '/img/broncoSport.png'
             }
         ];
