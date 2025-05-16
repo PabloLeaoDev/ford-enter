@@ -12,8 +12,6 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, '..', 'public')));
-
 app.post('/login', (req, res) => {
     try {
         const { username, password } = req.body
@@ -50,10 +48,10 @@ app.get('/vehicle', (req, res) => {
             {
                 id: 1,
                 model: 'Ranger',
-                sales: 1500,
-                connected: 500,
-                updated: 750,
-                img: 'http://localhost:3000/img/ranger.png'
+                sales: 4158,
+                connected: 700,
+                updated: 1550,
+                img: '/img/ranger.png'
             },
             {
                 id: 2,
@@ -61,23 +59,23 @@ app.get('/vehicle', (req, res) => {
                 sales: 1500,
                 connected: 500,
                 updated: 750,
-                img: 'http://localhost:3000/img/mustang.png'
+                img: '/img/mustang.png'
             },
             {
                 id: 3,
                 model: 'Territory',
-                sales: 1500,
-                connected: 500,
-                updated: 750,
-                img: 'http://localhost:3000/img/territory.png'
+                sales: 4560,
+                connected: 1200,
+                updated: 3050,
+                img: '/img/territory.png'
             },
             {
                 id: 4,
                 model: 'Bronco Sport',
-                sales: 1500,
-                connected: 500,
-                updated: 750,
-                img: 'http://localhost:3000/img/broncoSport.png'
+                sales: 2791,
+                connected: 900,
+                updated: 2140,
+                img: '/img/broncoSport.png'
             }
         ];
 
