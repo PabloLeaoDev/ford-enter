@@ -1,0 +1,114 @@
+<main class="lancamento">
+    <h1 class="l-h1">Confira as Inovações do Novo Modelo Ford</h1>
+    <video autoplay loop muted>
+        <source src="assets/video/ford-video.mp4" type="video/mp4">
+        <!-- colocar .ogg -->
+        Seu navegador não suporta vídeos.
+    </video>
+    <table>
+        <tbody>
+            <tr>
+                <td class="car-img"><label for="xl"><img class="check" src="assets/img/XL Cabine.jpg" alt=""></label></td>
+                <td class="car-info">
+                    <input class="check in" type="checkbox" id="xl">
+                    <div>
+                        <p>Ranger XL Cabine Diesel 4x4 2022</p>
+                        <p class="price">Preço: R$ 180.000</p>
+                    </div>
+                    <img class="info-img" src="assets/img/info.png" alt="info">
+                </td>
+            </tr>
+            <tr>
+                <td class="car-img"><label for="xls"><img class="check" src="assets/img/xls 2.2 diesel.jpg" alt=""></label></td>
+                <td class="car-info">
+                    <input class="check in" type="checkbox" id="xls">
+                    <div>
+                        <p>Ranger XLS 2.2 Diesel 4x4 2022</p>
+                        <p class="price">Preço: R$ 240.000</p>
+                    </div>
+                    <img class="info-img" src="assets/img/info.png" alt="info">
+                </td>
+            </tr>
+            <tr>
+                <td class="car-img"><label for="storm"><img class="check" src="assets/img/storm.jpg" alt=""></label></td>
+                <td class="car-info">
+                    <input class="check in" type="checkbox" id="storm">
+                    <div>
+                        <p>Ranger Storm Diesel 4x4 2022</p>
+                        <p class="price">Preço: R$ 300.000</p>
+                    </div>
+                    <img class="info-img" src="assets/img/info.png" alt="info">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="btn-compare">Comparar Carros</button>
+    <dialog id="dinamic-dialog">
+        <button id="close-dialog">X</button>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Campos</th>
+                    <th>Carro 1</th>
+                    <th>Carro 2</th>
+                </tr>
+                <tr>
+                    <th id="field-image">Imagem</th>
+                    <td><img src="" alt="Carro 1" id="car-image1"></td>
+                    <td><img src="" alt="Carro 2" id="car-image2"></td>
+                </tr>
+                <tr>
+                    <th id="field-name">Nome</th>
+                    <td id="car-name1"></td>
+                    <td id="car-name2"></td>
+                </tr>
+                <tr>
+                    <th id="field-price">Preço</th>
+                    <td id="car-price1"></td>
+                    <td id="car-price2"></td>
+                </tr>
+                <tr>
+                    <th id="field-hbucket">Altura do Baú</th>
+                    <td id="car-hbucket1"></td>
+                    <td id="car-hbucket2"></td>
+                </tr>
+                <tr>
+                    <th id="field-hvehicle">Altura do Veículo</th>
+                    <td id="car-hvehicle1"></td>
+                    <td id="car-hvehicle2"></td>
+                </tr>
+                <tr>
+                    <th id="field-hsoil">Altura do Solo</th>
+                    <td id="car-hsoil1"></td>
+                    <td id="car-hsoil2"></td>
+                </tr>
+                <tr>
+                    <th id="field-lcapacity">Capacidade de Carga</th>
+                    <td id="car-lcapacity1"></td>
+                    <td id="car-lcapacity2"></td>
+                </tr>
+                <tr>
+                    <th id="field-vbucket">Volume do Baú</th>
+                    <td id="car-vbucket1"></td>
+                    <td id="car-vbucket2"></td>
+                </tr>
+                <tr>
+                    <th id="field-engname">Nome do Motor</th>
+                    <td id="car-engname1"></td>
+                    <td id="car-engname2"></td>
+                </tr>
+                <tr>
+                    <th id="field-engpower">Potência do Motor</th>
+                    <td id="car-engpower1"></td>
+                    <td id="car-engpower2"></td>
+                </tr>
+                <tr>
+                    <th id="field-wheel">Rodas</th>
+                    <td id="car-wheel1"></td>
+                    <td id="car-wheel2"></td>
+                </tr>
+            </tbody>
+        </table>            
+    </dialog>
+
+</main>

@@ -1,0 +1,56 @@
+<main class="contato">
+    <div>
+        <h1>Sobre Você</h1>
+        <img src="assets/img/xls 2.2 diesel.jpg" alt="storm model">
+    </div>
+    <form class="forms" id="iform" action="" method="post">
+        <div class="form-container">
+            <div>
+                <label for="iname">Nome Completo</label>
+                <input type="text" id="iname" name="name" placeholder="Nome Completo" required>
+            </div>
+            <div>
+                <label for="iemail">E-mail</label>
+                <input type="email" id="iemail" name="email" placeholder="E-mail" required>
+            </div>
+            <div>
+                <label for="icpf">CPF</label>
+                <input type="text" id="icpf" name="cpf" placeholder="CPF" minlength="14" maxlength="14" required>
+            </div>
+            <div>
+                <label for="iphone-number">Telefone</label>
+                <input type="tel" id="iphone-number" name="phone-number" placeholder="Telefone">
+            </div>
+            <div>
+                <label for="type">Como você deseja ser contatado</label>
+                <select id="type" name="type" required>
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="aquisicao">Aquisição</option>
+                    <option value="elogio">Elogio</option>
+                    <option value="critica">Crítica</option>
+                </select>
+            </div>
+            <div class="free-text">
+                <label for="message">Mensagem</label>
+                <textarea id="message" name="message" placeholder="Mensagem"></textarea>
+            </div>
+            <div class="lgpd">
+                <p>
+                    Os dados serão mantidos em nossa base de dados, só enquanto for desejado por você. A
+                    qualquer momento, será possível editar ou remover tais dados. <a href="https://www.ford.com.br/politica-de-privacidade/" target="_blank">Termos e Condições</a>
+                </p>
+                <div>
+                    <div class="check cterms">
+                        <input type="checkbox" name="terms" id="iterms">
+                        <label for="iterms">Sim. Li e concordo com os Termos e Condições.</label>
+                    </div>
+                    <div class="check cnews">
+                        <input type="checkbox" name="news" id="inews">
+                        <label for="inews">Sim. Também quero receber descontos e novidades.</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+</main>
