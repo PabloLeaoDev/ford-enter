@@ -1,0 +1,91 @@
+<div class="dashboard-container">
+  <div class="top">
+    <button class="back" routerLink="/home">&#10094;</button>
+    <h2 class="mb-4">Dashboard <small class="text-muted">Controle de Veículos</small></h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card metric-card bg-primary text-white">
+        <div class="card-body">
+          <h5><i class="bi bi-currency-dollar"></i> Total de Vendas</h5>
+          <p class="display-6">{{ selectedVehicle?.[0]?.sales || '0' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card metric-card bg-success text-white">
+        <div class="card-body">
+          <h5><i class="bi bi-wifi"></i> Veículos Conectados</h5>
+          <p class="display-6">{{ selectedVehicle?.[0]?.connected || '0' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card metric-card bg-warning text-dark">
+        <div class="card-body">
+          <h5><i class="bi bi-arrow-up-circle"></i> Softwares Atualizados</h5>
+          <p class="display-6">{{ selectedVehicle?.[0]?.updated || '0' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <select class="form-select search-vmodel" [(ngModel)]="selectedModel" (change)="loadVehicle()" #vmodelInput>
+      <option value="" disabled selected>Selecione um modelo...</option>
+      <option *ngFor="let vehicle of vehicleModels" [value]="vehicle.id">
+        {{ vehicle.model }}
+      </option>
+    </select>
+  </div>
+
+  <div class="show-model">
+    <h5><strong>Modelo:</strong> {{ selectedVehicle?.[0]?.model || 'N/A' }}</h5>
+    @if (selectedVehicle?.[0]?.img) {
+      <img [src]="selectedVehicle?.[0].img" [alt]="selectedVehicle?.[0].model">
+    } @else {
+      <img src="/img/car-shadow.png" alt="car void">
+    }
+  </div>
+
+  <div class="card shadow">
+    <div class="card-header bg-light">
+      <h5 class="mb-0">Detalhes do Veículo</h5>
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Buscar por código..." #vdetailInput>
+        <button (click)="searchByCode()" class="btn btn-primary mt-2">
+          <i class="bi bi-search"></i> Buscar Detalhes
+        </button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Odômetro</th>
+              <th>Nível de Combustível</th>
+              <th>Status</th>
+              <th>Latitude</th>
+              <th>Lingitude</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of vehicleData">
+              <td>{{ item.odometro }}</td>
+              <td>{{ item.nivelCombustivel }}</td>
+              @if (item.status === 'on') {
+                <td><span class="badge bg-success bg-">{{ item.status }}</span></td>
+              } @else {
+                <td><span class="badge bg-danger bg-">{{ item.status }}</span></td>
+              }
+              <td>{{ item.lat }}</td>
+              <td>{{ item.long }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

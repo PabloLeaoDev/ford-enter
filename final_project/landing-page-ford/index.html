@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ford Company</title>
+    <link rel="shortcut icon" href="./assets/img/ford-favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="assets/img/logo-ford.png" alt="Logo da Ford"></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lancamento.html">Lançamento</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+        <button class="login"><a href="http://localhost:4200/login">Entrar</a></button>
+    </header>
+    <main class="index">
+        <section class="ranger-bg">
+            <h1>Bem-vindo ao Novo Lançamento da Ford</h1>
+            <video autoplay loop muted>
+                <source src="assets/video/ford-ranger.mp4" type="video/mp4">
+                <!-- colocar .ogg -->
+                Seu navegador não suporta vídeos em HTML5.
+            </video>
+        </section>
+        <section class="lauch">
+            <h2>Está chegando o <strong>4x4 mais Robusto</strong> do Brasil</h2>
+            <div class="container-info">
+                <h3>
+                    Conheça o Novo Modelo da Ford: o <strong>Ranger Black!</strong>
+                </h3>
+                <div class="info design right">
+                    <h3>Inovação e Design Moderno</h3>
+                    <p>
+                        O Ford Ranger Black redefine o conceito de picape, unindo tecnologia de ponta e um visual sofisticado, oferecendo performance e estilo imponentes.
+                    </p>
+                </div>
+                <div class="info power left">
+                    <h3>Potência e Desempenho</h3>
+                    <p>
+                        Com motor turbodiesel avançado, a Ranger Black entrega potência excepcional e eficiência, sendo perfeita para qualquer terreno.
+                    </p>
+                </div>
+                <div class="info connectivity right">
+                    <h3>Conectividade e Segurança</h3>
+                    <p>
+                        Seu design robusto, com acabamento preto exclusivo, garante presença na estrada, enquanto recursos de conectividade e segurança tornam a experiência de condução única.
+                    </p>
+                </div>
+            </div>
+            <div id="caurosel">
+                <img src="assets/img/imagem_1.jpg" class="ranger-img" alt="Novo carro da Ford">
+                <div id="carousel-title">Essa é a nova Ford Ranger 2022. Verifique as Novidades.</div>
+                <div id="carousel-buttons">
+                    <button id="back">&#9664</button>
+                    <button id="next">&#9654</button>
+                </div>
+            </div>
+        </section>
+    </main>    
+    <footer>
+        <div>
+            <p>Redes Sociais</p>
+            <div>
+                <a href="https://pt-br.facebook.com/ford/photos/" target="_blank"><img src="assets/img/facebook-50.png" alt="Facebook"></a>
+                <a href="https://www.youtube.com/user/ford" target="_blank"><img src="assets/img/youtube-squared-50.png" alt="Youtube"></a>
+                <a href="https://www.instagram.com/fordbrasil/" target="_blank"><img src="assets/img/instagram-logo-50.png" alt="Instagram"></a>
+            </div>
+        </div>
+        <a href="https://www.ford.com.br/copyright/" target="_blank"><img src="assets/img/ford-96.png" alt="Logo da Ford"></a>
+    </footer>
+    <script src="assets/js/carousel.js"></script>
+</body>
+</html>
