@@ -1,8 +1,12 @@
-const express = require('express');
-const path = require('path');
-const cors = require('cors')
+import { FileReadError, DataAlreadyExistsError, SavingDataError } from './errors.mjs';
+import fs from 'fs';
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
+const PORT = 3001;
 
 app.use(cors({
     origin: '*', 
@@ -11,6 +15,58 @@ app.use(cors({
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('QUIET');
+});
+
+app.get('/ping', (req, res) => {
+  res.send('OK');
+});
+
+app.post('/save', (req, res) => {
+  const newData = req.body;
+
+  const __filename = fileURLToPath(import.meta.url),
+        __dirname = path.dirname(__filename);
+  const dataFilePath = path.resolve(__dirname, 'data.json');
+
+  fs.readFile(dataFilePath, 'utf8', (err, fileData) => {
+    try {
+        let jsonData = [];
+
+        if (!err && fileData) {
+            jsonData = JSON.parse(fileData);
+        } else if (!fileData) {
+            throw new FileReadError('Erro ao ler o arquivo JSON existente.');
+        }
+    
+        const exists = jsonData.some(obj => obj.cpf === newData.cpf);
+    
+        if (exists) {
+          throw new DataAlreadyExistsError('This data exists in database.');
+        }
+    
+        jsonData.push(newData);
+    
+        fs.writeFile('data.json', JSON.stringify(jsonData, null, 2), 'utf8', (err) => {
+          if (err) {
+            throw new SavingDataError('Erro ao salvar os dados');
+          }
+    
+          res.status(200).json({ message: 'Dados salvos com sucesso!' });
+        });
+    } catch (error) {
+        if (error instanceof FileReadError) {
+            return res.status(500).json({ error: error.message });
+        } else if (error instanceof DataAlreadyExistsError) {
+            return res.status(400).json({ error: error.message });
+        } else if (error instanceof SavingDataError) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
+  });
+});
 
 app.post('/login', (req, res) => {
     try {
@@ -143,6 +199,10 @@ app.get('/vehicleData', (req, res) => {
     }
 })
 
-app.listen(3001, () => {
-    console.log('http://localhost:3001/');
+app.use((req, res) => {
+  res.status(404).json({ error: 'Rota não encontrada' });
+});
+
+app.listen(PORT, () => {
+    console.log(`http://localhost:${PORT}/`);
 });

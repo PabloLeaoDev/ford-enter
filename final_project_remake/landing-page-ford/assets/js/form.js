@@ -63,11 +63,7 @@ class Contact {
   }
   
   function nameValidator(name) {
-    if (!alphabetValidator(name)) return false;
-  
-    const arrName = name.split(' ');
-  
-    return arrName.length <= 2;
+    return alphabetValidator(name);
   }
   
   function cpfValidator(cpf) {
@@ -176,7 +172,7 @@ class Contact {
     let flagError = false;
   
     try {
-      const response = await fetch(`http://localhost:8000/save`, {
+      const response = await fetch(`http://localhost:3001/save`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
